@@ -12,7 +12,8 @@
       "Bash(bundle exec *)",
       "Bash(git -C /Users/ichinoheakito/claude-code status --short)",
       "Bash(git *)",
-      "Bash(rails db:migrate *)"
+      "Bash(rails db:migrate *)",
+      "Bash(bin/rails runner *)"
     ]
   }
 }

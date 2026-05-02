@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruby --version)",
+      "Bash(rails --version)",
+      "Bash(psql --version)",
+      "Bash(rails new *)",
+      "Bash(bundle install *)",
+      "Bash(rails db:create *)",
+      "Bash(rails db:drop)",
+      "Bash(rails generate *)",
+      "Bash(bundle exec *)",
+      "Bash(git -C /Users/ichinoheakito/claude-code status --short)",
+      "Bash(git *)"
+    ]
+  }
+}

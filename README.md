@@ -113,23 +113,6 @@ bin/rails db:create db:migrate
 bin/dev
 ```
 
-### 環境変数
-
-| 変数名 | 説明 |
-|---|---|
-| `RAILS_MASTER_KEY` | config/master.key の内容（本番環境） |
-| `APP_HOST` | アプリのホスト名（本番環境） |
-
----
-
-## テスト実行
-
-```bash
-bundle exec rspec
-```
-
----
-
 ## 今後の展望
 
 現在のスコープ外として、以下の機能追加を検討しています。

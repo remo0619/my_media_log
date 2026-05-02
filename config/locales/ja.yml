@@ -1,0 +1,33 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      content: コンテンツ
+    attributes:
+      user:
+        email: メールアドレス
+        username: ユーザー名
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        current_password: 現在のパスワード
+      content:
+        title: タイトル
+        url: URL
+        media_type: 種別
+        status: ステータス
+        rating: 星評価
+        memo: メモ
+    errors:
+      models:
+        content:
+          attributes:
+            url:
+              invalid: は正しいURL形式で入力してください（http:// または https://）
+            rating:
+              not_an_integer: は整数で入力してください
+              inclusion: は1〜5の範囲で入力してください
+  errors:
+    messages:
+      not_saved:
+        one: "1件のエラーがあるため、%{resource}を保存できませんでした"
+        other: "%{count}件のエラーがあるため、%{resource}を保存できませんでした"

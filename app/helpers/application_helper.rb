@@ -15,6 +15,24 @@ module ApplicationHelper
     "other"   => "bg-gray-100 text-gray-600"
   }.freeze
 
+  # フィールドエラーをインライン表示するヘルパー
+  def inline_error(object, field)
+    errors = object.errors[field]
+    return if errors.empty?
+
+    content_tag(:p, errors.first, class: "text-red-500 text-xs mt-1")
+  end
+
+  # エラーがあるフィールドに赤ボーダーを適用するヘルパー
+  def input_class(object, field, extra: "")
+    base = "w-full rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 #{extra}"
+    if object.errors[field].any?
+      "#{base} border border-red-400 focus:ring-red-400"
+    else
+      "#{base} border border-gray-300 focus:ring-indigo-500"
+    end
+  end
+
   def t_media_type(media_type)
     MEDIA_TYPE_LABELS.fetch(media_type, media_type)
   end

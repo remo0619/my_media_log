@@ -1,0 +1,39 @@
+<div class="flex items-center justify-between mb-6">
+  <h1 class="text-2xl font-bold text-gray-800">コンテンツ一覧</h1>
+  <%= link_to "+ 新規登録", new_content_path,
+      class: "bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded text-sm" %>
+</div>
+
+<% if @contents.empty? %>
+  <div class="text-center py-20 text-gray-400">
+    <p class="text-lg">まだコンテンツがありません</p>
+    <p class="text-sm mt-1">「+ 新規登録」からコンテンツを追加してみましょう</p>
+  </div>
+<% else %>
+  <div class="grid gap-3">
+    <% @contents.each do |content| %>
+      <div class="bg-white rounded-lg shadow-sm border border-gray-100 px-5 py-4 flex items-center justify-between hover:shadow transition">
+        <div class="flex items-center gap-4 min-w-0">
+          <span class="shrink-0 bg-indigo-50 text-indigo-600 text-xs font-medium px-2 py-0.5 rounded">
+            <%= t_media_type(content.media_type) %>
+          </span>
+          <div class="min-w-0">
+            <%= link_to content.title, content_path(content),
+                class: "font-medium text-gray-800 hover:text-indigo-600 truncate block" %>
+            <% if content.url.present? %>
+              <p class="text-xs text-gray-400 truncate"><%= content.url %></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 shrink-0 ml-4">
+          <% if content.rating.present? %>
+            <span class="text-yellow-500 text-sm"><%= "★" * content.rating %></span>
+          <% end %>
+          <span class="<%= content.done? ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %> text-xs font-semibold px-2 py-0.5 rounded-full">
+            <%= content.done? ? "消化済み" : "未消化" %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

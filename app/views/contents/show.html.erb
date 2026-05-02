@@ -1,0 +1,49 @@
+<div class="max-w-2xl mx-auto">
+  <div class="flex items-center justify-between mb-6">
+    <%= link_to "← 一覧に戻る", contents_path, class: "text-sm text-indigo-600 hover:underline" %>
+    <div class="flex gap-3">
+      <%= link_to "編集", edit_content_path(@content),
+          class: "text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-1.5 rounded" %>
+      <%= button_to "削除", content_path(@content), method: :delete,
+          form: { data: { turbo_confirm: "本当に削除しますか？" } },
+          class: "text-sm bg-red-100 hover:bg-red-200 text-red-700 px-4 py-1.5 rounded cursor-pointer border-0" %>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-lg shadow p-6 space-y-4">
+    <div class="flex items-start justify-between">
+      <h1 class="text-xl font-bold text-gray-900"><%= @content.title %></h1>
+      <span class="<%= @content.done? ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %> text-xs font-semibold px-2 py-1 rounded-full">
+        <%= @content.done? ? "消化済み" : "未消化" %>
+      </span>
+    </div>
+
+    <div class="flex items-center gap-3 text-sm text-gray-500">
+      <span class="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-xs font-medium">
+        <%= t_media_type(@content.media_type) %>
+      </span>
+      <% if @content.rating.present? %>
+        <span class="text-yellow-500">
+          <%= "★" * @content.rating %><%= "☆" * (5 - @content.rating) %>
+        </span>
+      <% end %>
+    </div>
+
+    <% if @content.url.present? %>
+      <div>
+        <p class="text-xs text-gray-400 mb-0.5">URL</p>
+        <%= link_to @content.url, @content.url, target: "_blank", rel: "noopener",
+            class: "text-indigo-600 hover:underline text-sm break-all" %>
+      </div>
+    <% end %>
+
+    <% if @content.memo.present? %>
+      <div>
+        <p class="text-xs text-gray-400 mb-0.5">メモ・感想</p>
+        <p class="text-sm text-gray-700 whitespace-pre-wrap"><%= @content.memo %></p>
+      </div>
+    <% end %>
+
+    <p class="text-xs text-gray-400">登録日: <%= @content.created_at.strftime("%Y/%m/%d") %></p>
+  </div>
+</div>

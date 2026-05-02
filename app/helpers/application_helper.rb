@@ -40,4 +40,12 @@ module ApplicationHelper
   def media_type_badge_class(media_type)
     MEDIA_TYPE_BADGE_CLASSES.fetch(media_type, "bg-gray-100 text-gray-600")
   end
+
+  def safe_external_url(url)
+    return nil if url.blank?
+    uri = URI.parse(url)
+    %w[http https].include?(uri.scheme) ? url : nil
+  rescue URI::InvalidURIError
+    nil
+  end
 end

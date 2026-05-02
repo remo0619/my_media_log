@@ -17,10 +17,10 @@ module ApplicationHelper
 
   # フィールドエラーをインライン表示するヘルパー
   def inline_error(object, field)
-    errors = object.errors[field]
-    return if errors.empty?
+    messages = object.errors.full_messages_for(field)
+    return if messages.empty?
 
-    content_tag(:p, errors.first, class: "text-red-500 text-xs mt-1")
+    content_tag(:p, messages.first, class: "text-red-500 text-xs mt-1")
   end
 
   # エラーがあるフィールドに赤ボーダーを適用するヘルパー

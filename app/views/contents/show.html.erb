@@ -2,6 +2,9 @@
   <div class="flex items-center justify-between mb-6">
     <%= link_to "← 一覧に戻る", contents_path, class: "text-sm text-indigo-600 hover:underline" %>
     <div class="flex gap-3">
+      <%= button_to @content.unread? ? "消化済みにする" : "未消化に戻す",
+          toggle_status_content_path(@content), method: :patch,
+          class: "text-sm px-4 py-1.5 rounded border cursor-pointer #{ @content.unread? ? 'border-green-400 text-green-600 hover:bg-green-50' : 'border-gray-300 text-gray-500 hover:bg-gray-50' }" %>
       <%= link_to "編集", edit_content_path(@content),
           class: "text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-1.5 rounded" %>
       <%= button_to "削除", content_path(@content), method: :delete,

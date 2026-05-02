@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
-  before_action :set_content, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_content!, only: [:show, :edit, :update, :destroy]
+  before_action :set_content, only: [:show, :edit, :update, :destroy, :toggle_status]
+  before_action :authorize_content!, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   def index
     @contents = current_user.contents.order(created_at: :desc)
@@ -36,6 +36,17 @@ class ContentsController < ApplicationController
   def destroy
     @content.destroy
     redirect_to contents_path, notice: "コンテンツを削除しました"
+  end
+
+  def toggle_status
+    if @content.unread?
+      @content.update!(status: :done)
+      notice = "消化済みにしました"
+    else
+      @content.update!(status: :unread, rating: nil)
+      notice = "未消化に戻しました"
+    end
+    redirect_back fallback_location: content_path(@content), notice: notice
   end
 
   private

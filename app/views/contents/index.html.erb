@@ -25,13 +25,16 @@
             <% end %>
           </div>
         </div>
-        <div class="flex items-center gap-4 shrink-0 ml-4">
+        <div class="flex items-center gap-3 shrink-0 ml-4">
           <% if content.rating.present? %>
             <span class="text-yellow-500 text-sm"><%= "★" * content.rating %></span>
           <% end %>
           <span class="<%= content.done? ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700' %> text-xs font-semibold px-2 py-0.5 rounded-full">
             <%= content.done? ? "消化済み" : "未消化" %>
           </span>
+          <%= button_to content.unread? ? "消化済みにする" : "未消化に戻す",
+              toggle_status_content_path(content), method: :patch,
+              class: "text-xs px-3 py-1 rounded border cursor-pointer #{ content.unread? ? 'border-green-400 text-green-600 hover:bg-green-50' : 'border-gray-300 text-gray-500 hover:bg-gray-50' }" %>
         </div>
       </div>
     <% end %>

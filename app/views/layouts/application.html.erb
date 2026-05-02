@@ -27,6 +27,7 @@
         <div class="hidden sm:flex items-center gap-4 text-sm">
           <% if user_signed_in? %>
             <%= link_to "一覧", contents_path, class: "text-gray-600 hover:text-indigo-600" %>
+            <%= link_to "マイページ", mypage_path, class: "text-gray-600 hover:text-indigo-600" %>
             <span class="text-gray-400">|</span>
             <span class="text-gray-600"><%= current_user.username %></span>
             <%= button_to "ログアウト", destroy_user_session_path, method: :delete,
@@ -50,6 +51,7 @@
       <div id="nav-menu" class="hidden sm:hidden border-t border-gray-100 px-4 py-3 space-y-2 text-sm">
         <% if user_signed_in? %>
           <%= link_to "コンテンツ一覧", contents_path, class: "block text-gray-700 hover:text-indigo-600 py-1" %>
+          <%= link_to "マイページ", mypage_path, class: "block text-gray-700 hover:text-indigo-600 py-1" %>
           <hr class="border-gray-100">
           <p class="text-gray-500 py-1"><%= current_user.username %></p>
           <%= button_to "ログアウト", destroy_user_session_path, method: :delete,

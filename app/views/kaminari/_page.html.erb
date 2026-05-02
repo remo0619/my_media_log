@@ -1,0 +1,5 @@
+<%# frozen_string_literal: true -%>
+<%= link_to_unless page.current?, page, url, remote: remote,
+    class: "px-3 py-1.5 text-sm rounded border #{ page.current? ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50' }" do
+  page.to_s
+end %>

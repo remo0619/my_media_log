@@ -1,0 +1,59 @@
+ja:
+  devise:
+    confirmations:
+      confirmed: "メールアドレスが確認されました。"
+      send_instructions: "確認メールを送信しました。"
+      send_paranoid_instructions: "メールアドレスが登録済みの場合、確認メールが届きます。"
+    failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントが有効化されていません。"
+      invalid: "%{authentication_keys}またはパスワードが正しくありません。"
+      locked: "アカウントがロックされています。"
+      last_attempt: "あと1回失敗するとアカウントがロックされます。"
+      not_found_in_database: "%{authentication_keys}またはパスワードが正しくありません。"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
+      unauthenticated: "ログインまたはアカウント登録してください。"
+      unconfirmed: "メールアドレスの確認が完了していません。"
+    mailer:
+      confirmation_instructions:
+        subject: "メールアドレスの確認"
+      reset_password_instructions:
+        subject: "パスワードの再設定"
+      unlock_instructions:
+        subject: "アカウントのロック解除"
+    omniauth_callbacks:
+      failure: "%{kind}アカウントによる認証に失敗しました（%{reason}）。"
+      success: "%{kind}アカウントで認証しました。"
+    passwords:
+      no_token: "パスワード再設定のリンクが無効です。パスワード再設定メールを再度お申し込みください。"
+      send_instructions: "パスワード再設定メールを送信しました。"
+      send_paranoid_instructions: "メールアドレスが登録済みの場合、パスワード再設定メールが届きます。"
+      updated: "パスワードを変更しました。"
+      updated_not_active: "パスワードを変更しました。"
+    registrations:
+      destroyed: "アカウントを削除しました。"
+      signed_up: "アカウント登録が完了しました。"
+      signed_up_but_inactive: "ログインするにはアカウントを有効化してください。"
+      signed_up_but_locked: "アカウントがロックされているためログインできません。"
+      signed_up_but_unconfirmed: "確認メールを送信しました。メール内のリンクでアカウントを有効化してください。"
+      update_needs_confirmation: "アカウント情報を更新しました。メールアドレス変更の確認メールが届きます。"
+      updated: "アカウント情報を更新しました。"
+      updated_but_not_signed_in: "パスワードが変更されました。新しいパスワードでログインしてください。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "すでにログアウト済みです。"
+    unlocks:
+      send_instructions: "ロック解除メールを送信しました。"
+      send_paranoid_instructions: "メールアドレスが登録済みの場合、ロック解除メールが届きます。"
+      unlocked: "アカウントのロックを解除しました。"
+  errors:
+    messages:
+      already_confirmed: "はすでに確認済みです。"
+      confirmation_period_expired: "の確認期限が切れました。%{period}以内に確認してください。"
+      expired: "は期限切れです。新しいリクエストをお申し込みください。"
+      not_found: "が見つかりません。"
+      not_locked: "はロックされていません。"
+      not_saved:
+        one: "エラーが1件あります。"
+        other: "エラーが%{count}件あります。"

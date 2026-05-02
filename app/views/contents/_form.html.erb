@@ -1,0 +1,61 @@
+<%= form_with model: content, class: "space-y-5" do |f| %>
+
+  <div>
+    <%= f.label :title, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_field :title, class: input_class(content, :title) %>
+    <%= inline_error(content, :title) %>
+  </div>
+
+  <div>
+    <%= f.label :url, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.url_field :url, placeholder: "https://", class: input_class(content, :url) %>
+    <%= inline_error(content, :url) %>
+  </div>
+
+  <div>
+    <%= f.label :media_type, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.select :media_type,
+        [["本", "book"], ["YouTube", "youtube"], ["動画配信", "video"], ["記事", "article"], ["その他", "other"]],
+        { include_blank: "-- 選択してください --" },
+        class: input_class(content, :media_type) %>
+    <%= inline_error(content, :media_type) %>
+  </div>
+
+  <div>
+    <%= f.label :status, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.select :status,
+        [["未消化", "unread"], ["消化済み", "done"]],
+        {},
+        class: input_class(content, :status),
+        id: "content_status" %>
+    <%= inline_error(content, :status) %>
+  </div>
+
+  <div id="rating_field" class="<%= content.unread? ? 'hidden' : '' %>">
+    <%= f.label :rating, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.select :rating,
+        [["-", ""], ["★", 1], ["★★", 2], ["★★★", 3], ["★★★★", 4], ["★★★★★", 5]],
+        {},
+        class: input_class(content, :rating) %>
+    <%= inline_error(content, :rating) %>
+  </div>
+
+  <div>
+    <%= f.label :memo, class: "block text-sm font-medium text-gray-700 mb-1" %>
+    <%= f.text_area :memo, rows: 4, class: input_class(content, :memo) %>
+    <%= inline_error(content, :memo) %>
+  </div>
+
+  <%= f.submit content.new_record? ? "登録する" : "更新する",
+      class: "bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded cursor-pointer" %>
+<% end %>
+
+<script>
+  document.getElementById("content_status").addEventListener("change", function() {
+    const ratingField = document.getElementById("rating_field");
+    ratingField.classList.toggle("hidden", this.value !== "done");
+    if (this.value !== "done") {
+      ratingField.querySelector("select").value = "";
+    }
+  });
+</script>

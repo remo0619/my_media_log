@@ -4,10 +4,45 @@
       class: "bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded text-sm" %>
 </div>
 
+<%# フィルタ・検索フォーム %>
+<%= form_with url: contents_path, method: :get, local: true, class: "bg-white rounded-lg shadow-sm border border-gray-100 px-5 py-4 mb-5 flex flex-wrap gap-3 items-end" do |f| %>
+  <div>
+    <%= f.label :media_type, "種別", class: "block text-xs text-gray-500 mb-1" %>
+    <%= f.select :media_type,
+        [["すべて", ""], ["本", "book"], ["YouTube", "youtube"], ["動画配信", "video"], ["記事", "article"], ["その他", "other"]],
+        { selected: params[:media_type] },
+        class: "border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
+
+  <div>
+    <%= f.label :status, "ステータス", class: "block text-xs text-gray-500 mb-1" %>
+    <%= f.select :status,
+        [["すべて", ""], ["未消化", "unread"], ["消化済み", "done"]],
+        { selected: params[:status] },
+        class: "border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
+
+  <div class="flex-1 min-w-40">
+    <%= f.label :q, "キーワード", class: "block text-xs text-gray-500 mb-1" %>
+    <%= f.text_field :q, value: params[:q], placeholder: "タイトルで検索",
+        class: "w-full border border-gray-300 rounded px-2 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+  </div>
+
+  <div class="flex gap-2">
+    <%= f.submit "検索", class: "bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-1.5 rounded cursor-pointer" %>
+    <%= link_to "リセット", contents_path, class: "text-sm text-gray-500 hover:text-gray-700 px-3 py-1.5 rounded border border-gray-300 hover:bg-gray-50" %>
+  </div>
+<% end %>
+
 <% if @contents.empty? %>
   <div class="text-center py-20 text-gray-400">
-    <p class="text-lg">まだコンテンツがありません</p>
-    <p class="text-sm mt-1">「+ 新規登録」からコンテンツを追加してみましょう</p>
+    <% if params[:media_type].present? || params[:status].present? || params[:q].present? %>
+      <p class="text-lg">該当するコンテンツが見つかりません</p>
+      <p class="text-sm mt-1"><%= link_to "絞り込みをリセット", contents_path, class: "text-indigo-500 hover:underline" %></p>
+    <% else %>
+      <p class="text-lg">まだコンテンツがありません</p>
+      <p class="text-sm mt-1">「+ 新規登録」からコンテンツを追加してみましょう</p>
+    <% end %>
   </div>
 <% else %>
   <div class="grid gap-3">

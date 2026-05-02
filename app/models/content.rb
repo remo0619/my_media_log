@@ -5,6 +5,10 @@ class Content < ApplicationRecord
 
   enum :status, { unread: 0, done: 1 }
 
+  scope :by_media_type, ->(type) { where(media_type: type) if type.present? }
+  scope :by_status,     ->(st)   { where(status: st) if st.present? }
+  scope :search_title,  ->(q)    { where("title LIKE ?", "%#{sanitize_sql_like(q)}%") if q.present? }
+
   validates :title, presence: true, length: { maximum: 255 }
   validates :url, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: "は正しいURL形式で入力してください" }, allow_blank: true
   validates :media_type, presence: true, inclusion: { in: MEDIA_TYPES }

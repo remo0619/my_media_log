@@ -3,7 +3,11 @@ class ContentsController < ApplicationController
   before_action :authorize_content!, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   def index
-    @contents = current_user.contents.order(created_at: :desc)
+    @contents = current_user.contents
+                             .by_media_type(params[:media_type])
+                             .by_status(params[:status])
+                             .search_title(params[:q])
+                             .order(created_at: :desc)
   end
 
   def show

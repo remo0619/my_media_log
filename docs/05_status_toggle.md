@@ -6,25 +6,21 @@
 ## TODO
 
 ### ルーティング
-- [ ] `resources :contents` にカスタムアクションを追加
-  ```ruby
-  member do
-    patch :toggle_status
-  end
-  ```
+- [x] `resources :contents` に `member { patch :toggle_status }` を追加
 
 ### ContentsController
-- [ ] `toggle_status` アクションを実装
-  - [ ] `unread` → `done` に切り替え
-  - [ ] `done` → `unread` に切り替え（`rating` を `nil` にリセット）
-  - [ ] 切り替え後に一覧または詳細へリダイレクト
+- [x] `toggle_status` アクションを実装
+  - [x] `unread` → `done` に切り替え
+  - [x] `done` → `unread` に切り替え（`rating` を `nil` にリセット）
+  - [x] `redirect_back` で元の画面（一覧 or 詳細）へリダイレクト
 
 ### ビュー
-- [ ] 一覧・詳細画面にステータス切り替えボタンを設置
-  - [ ] `unread` のとき「消化済みにする」ボタン
-  - [ ] `done` のとき「未消化に戻す」ボタン
-- [ ] ボタンは `button_to` で `patch` メソッドを使用
+- [x] 一覧画面の各カード右端にトグルボタンを設置
+  - [x] `unread` のとき「消化済みにする」（緑枠）
+  - [x] `done` のとき「未消化に戻す」（グレー枠）
+- [x] 詳細画面のアクションエリアにトグルボタンを設置
+- [x] ボタンは `button_to` で `patch` メソッドを使用
 
 ## 完了条件
-- 一覧・詳細からワンクリックでステータスを切り替えられる
-- `done` → `unread` 切り替え時に `rating` が消える
+- [x] 一覧・詳細からワンクリックでステータスを切り替えられる
+- [x] `done` → `unread` 切り替え時に `rating` が消える

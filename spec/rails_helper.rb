@@ -41,7 +41,7 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers, type: :system
 
   config.before(:each, type: :system) do
-    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 900]
+    driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 900 ]
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

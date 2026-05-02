@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  before_action :reject_guest_user!, only: [:edit, :update]
+  before_action :reject_guest_user!, only: [ :edit, :update ]
 
   private
 

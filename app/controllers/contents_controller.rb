@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
-  before_action :set_content, only: [:show, :edit, :update, :destroy, :toggle_status]
-  before_action :authorize_content!, only: [:show, :edit, :update, :destroy, :toggle_status]
+  before_action :set_content, only: [ :show, :edit, :update, :destroy, :toggle_status ]
+  before_action :authorize_content!, only: [ :show, :edit, :update, :destroy, :toggle_status ]
 
   def index
     @contents = current_user.contents

@@ -14,7 +14,8 @@
 ![コンテンツ一覧](app/assets/images/ScreenShot02.png)
 
 ---
-
+## サービスURL
+https://my-media-log-908acf9283d8.herokuapp.com/
 ## 機能一覧
 
 ### 認証

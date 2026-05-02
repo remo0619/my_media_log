@@ -6,29 +6,24 @@
 ## TODO
 
 ### ContentsController（index アクション）
-- [ ] クエリパラメータ `media_type`・`status`・`q` を受け取る
-- [ ] `scope` またはメソッドチェーンでフィルタリング実装
-  ```ruby
-  contents = current_user.contents
-  contents = contents.where(media_type: params[:media_type]) if params[:media_type].present?
-  contents = contents.where(status: params[:status]) if params[:status].present?
-  contents = contents.where("title LIKE ?", "%#{params[:q]}%") if params[:q].present?
-  ```
-- [ ] SQL インジェクション対策（プレースホルダ使用）
+- [x] クエリパラメータ `media_type`・`status`・`q` を受け取る
+- [x] scope のメソッドチェーンでフィルタリング実装
+- [x] SQL インジェクション対策（`sanitize_sql_like` を使用）
 
 ### Content モデル（scope 定義）
-- [ ] `scope :by_media_type, ->(type) { where(media_type: type) if type.present? }`
-- [ ] `scope :by_status, ->(st) { where(status: st) if st.present? }`
-- [ ] `scope :search_title, ->(q) { where("title LIKE ?", "%#{q}%") if q.present? }`
+- [x] `scope :by_media_type`
+- [x] `scope :by_status`
+- [x] `scope :search_title`（`sanitize_sql_like` で LIKE インジェクション対策）
 
 ### ビュー（一覧画面）
-- [ ] 種別フィルタ：select タグ（全種別 + 選択肢）
-- [ ] ステータスフィルタ：select タグ（全・未消化・消化済み）
-- [ ] キーワード検索：text_field + 検索ボタン
-- [ ] フォームは `get` メソッドで `contents_path` に送信
-- [ ] 現在の絞り込み条件が選択状態で表示されるよう `selected` を設定
-- [ ] 「絞り込みをリセット」リンクを設置
+- [x] 種別フィルタ：select タグ（すべて + 5種別）
+- [x] ステータスフィルタ：select タグ（すべて・未消化・消化済み）
+- [x] キーワード検索：text_field + 検索ボタン
+- [x] フォームは `get` メソッドで `contents_path` に送信
+- [x] 現在の絞り込み条件が選択状態で表示される（`selected: params[...]`）
+- [x] 「リセット」リンクを設置
+- [x] 絞り込み結果が空のとき専用メッセージを表示
 
 ## 完了条件
-- 種別・ステータス・キーワードの単独および組み合わせ検索が正常に動作する
-- ページ再読み込み後も絞り込み状態が保たれる
+- [x] 種別・ステータス・キーワードの単独および組み合わせ検索が正常に動作する
+- [x] ページ再読み込み後も絞り込み状態が保たれる

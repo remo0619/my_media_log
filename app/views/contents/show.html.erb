@@ -1,7 +1,7 @@
 <div class="max-w-2xl mx-auto">
-  <div class="flex items-center justify-between mb-6">
+  <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
     <%= link_to "← 一覧に戻る", contents_path, class: "text-sm text-indigo-600 hover:underline" %>
-    <div class="flex gap-3">
+    <div class="flex flex-wrap gap-2">
       <%= button_to @content.unread? ? "消化済みにする" : "未消化に戻す",
           toggle_status_content_path(@content), method: :patch,
           class: "text-sm px-4 py-1.5 rounded border cursor-pointer #{ @content.unread? ? 'border-green-400 text-green-600 hover:bg-green-50' : 'border-gray-300 text-gray-500 hover:bg-gray-50' }" %>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="flex items-center gap-3 text-sm text-gray-500">
-      <span class="bg-indigo-50 text-indigo-600 px-2 py-0.5 rounded text-xs font-medium">
+      <span class="px-2 py-0.5 rounded text-xs font-medium <%= media_type_badge_class(@content.media_type) %>">
         <%= t_media_type(@content.media_type) %>
       </span>
       <% if @content.rating.present? %>
